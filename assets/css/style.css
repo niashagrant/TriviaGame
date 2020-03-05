@@ -1,0 +1,18 @@
+body {
+  background-size: initial;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(245, 246, 252, 0.52),
+      rgb(155, 88, 97)
+    ),
+    url("https://cdn.wallpapersafari.com/67/57/BduNf4.jpg");
+}
+
+#outside {
+  margin: 10% 20%;
+  background-color: rgba(253, 245, 230, 0.699);
+}
+
+#inside {
+  background-color: rgba(199, 114, 125, 0.356);
+}
