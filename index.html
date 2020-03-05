@@ -10,6 +10,10 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <script
+      src="https://kit.fontawesome.com/3ed87a7545.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://code.jquery.com/jquery.js"></script>
     <link rel="stylesheet" href="assets/css/style.css" />
     <script src="assets/javascript/app.js"></script>
@@ -17,11 +21,10 @@
 
   <body>
     <div class="jumbotron text-center " id="outside">
-      <h1 class="display-4" style="color: darkslategray;">
-        Microbiology Trivia
+      <h1 class="display-4" style="color: darkcyan;">
+        Microbiology Trivia <i class="fas fa-microscope"></i>
       </h1>
 
-      <hr class="my-4" />
       <div class="jumbotron text-center" id="inside">
         <p class="lead">
           Lets test your Microbiology knowledge.
@@ -29,17 +32,19 @@
         <p class="lead">
           You will be given 25 seconds to select the correct answer.
         </p>
-        <hr class="my-4" />
-        <p>
-          Click the "Start Game" button to play.
-        </p>
+
         <a
           class="btn btn-info btn-lg"
           style="color: rgb(253, 245, 230);"
           href="#"
           role="button"
+          id="startGame"
           >Start Game</a
         >
+        <hr class="my-4" />
+
+        <h2 id="timer"></h2>
+        <div id="game"></div>
       </div>
     </div>
   </body>

@@ -1,18 +1,31 @@
 body {
-  background-size: initial;
+  background-size: cover;
   background-image: linear-gradient(
       to bottom,
       rgba(245, 246, 252, 0.52),
-      rgb(155, 88, 97)
+      rgba(0, 138, 138, 0.61)
     ),
-    url("../images/BduNf4.jpg");
+    url("../images/Screen\ Shot\ 2020-03-04\ at\ 10.17.56\ PM.png");
 }
 
 #outside {
-  margin: 10% 20%;
+  margin: 0 20%;
   background-color: rgba(253, 245, 230, 0.699);
 }
 
 #inside {
   background-color: rgba(199, 114, 125, 0.356);
+}
+
+#playAgain {
+  visibility: visible;
+}
+
+.choice {
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 20%;
+  margin-right: 20%;
 }
