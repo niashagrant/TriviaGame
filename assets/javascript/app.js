@@ -18,7 +18,7 @@ $(document).ready(function() {
     },
     {
       question:
-        "Not all microbial processes are bad. Some foods are actually produced by the action of microbes. Which one of the following foods is produced, in part, by a microbial process?",
+        "Some foods are actually produced by the action of microbes. Which one of the following foods is produced, in part, by a microbial process?",
       choice: ["French Fries", "Pasta", "Chips", "Yogurt"],
       answer: "Yogurt"
     },
@@ -63,6 +63,32 @@ $(document).ready(function() {
     }
   ];
 
+  var rightImages = [
+    "https://media1.giphy.com/media/s92f9UTsinNDy/200.webp?cid=790b76113dd0a2d7fb6e83b3c1a614d1f569a7557a7ff7ab&rid=200.webp",
+    "https://media3.giphy.com/media/fvT2lZ7UFAvHpPjmVs/giphy.webp?cid=790b76113dd0a2d7fb6e83b3c1a614d1f569a7557a7ff7ab&rid=giphy.webp",
+    "https://media3.giphy.com/media/pNpONEEg3pLIQ/giphy.webp?cid=790b76113dd0a2d7fb6e83b3c1a614d1f569a7557a7ff7ab&rid=giphy.webp",
+    "https://media2.giphy.com/media/3o7abKhOpu0NwenH3O/200.webp?cid=790b76113dd0a2d7fb6e83b3c1a614d1f569a7557a7ff7ab&rid=200.webp",
+    "https://media1.giphy.com/media/1fgI4bZpCo9S57r4Vd/giphy.webp?cid=790b7611d8ba598b81cc1dd3ac614dbf73d5af1b86ad9933&rid=giphy.webp",
+    "https://media3.giphy.com/media/Tjp51Zek2a3KWIFjQK/200.webp?cid=790b7611d8ba598b81cc1dd3ac614dbf73d5af1b86ad9933&rid=200.webp",
+    "https://media2.giphy.com/media/1wXdllY4NCaHaCZOOb/giphy.webp?cid=790b76110fe52d5427106a2481ba15a0ee8e97cb9d258f31&rid=giphy.webp",
+    "https://media1.giphy.com/media/26uf6o80xhd6MKGIw/200.webp?cid=790b76115a2aa54e2c12ee7e4e8ed07346c0ce725d34724d&rid=200.webp",
+    "https://media1.giphy.com/media/NEvPzZ8bd1V4Y/giphy.webp?cid=790b7611aa57d9867c11fe280c58dc6e886f4a7179e64868&rid=giphy.webp",
+    "https://media2.giphy.com/media/xT9IgKWQeoclWggTDO/giphy.webp?cid=790b76110855a64e914b32ff33b5962bda38c27729bb44ab&rid=giphy.webp"
+  ];
+
+  var wrongImages = [
+    "https://media0.giphy.com/media/l4pLY0zySvluEvr0c/200.webp?cid=790b761139a7d6c9f59453e952f9b2a68fee94f3fc44c667&rid=200.webp",
+    "https://media0.giphy.com/media/4OJFCEeGzYGs0/200.webp?cid=790b761139a7d6c9f59453e952f9b2a68fee94f3fc44c667&rid=200.webp",
+    "https://media2.giphy.com/media/UX06yZ6erE0fQtU1Sd/giphy.webp?cid=790b761180f4a6c498c26be3055ae0a5361c83f589694139&rid=giphy.webp",
+    "https://media2.giphy.com/media/mEbBlAsB0vdQ3uPR3t/giphy.webp?cid=790b7611e7e1e18c982990b79c57aa078bd8ff3ed3e9e4ea&rid=giphy.webp",
+    "https://media1.giphy.com/media/xVIkfXYGTJeZKilg3p/giphy.webp?cid=790b7611ea12b32c2a8bf5367056b6bc66a9caade0da8f89&rid=giphy.webp",
+    "https://media3.giphy.com/media/nR4L10XlJcSeQ/200.webp?cid=790b761138df3ce49067bf87517057dc0949a196402d4551&rid=200.webp",
+    "https://media1.giphy.com/media/gnE4FFhtFoLKM/giphy.webp?cid=790b761138df3ce49067bf87517057dc0949a196402d4551&rid=giphy.webp",
+    "https://media3.giphy.com/media/LOEI8jsNKPmzdJYvhJ/200.webp?cid=790b7611f8b87363aaa6b896c677b668edcd618e12d4066f&rid=200.webp",
+    "https://media1.giphy.com/media/W4X6HuX1ZVIEGFSvVD/giphy.webp?cid=790b7611c21c30fab589b55e04672b617b023a0a858463e9&rid=giphy.webp",
+    "https://media1.giphy.com/media/1zSz5MVw4zKg0/giphy.webp?cid=790b7611e5e3b6ed9f135efca563232900eb001a97ab020b&rid=giphy.webp"
+  ];
+
   var counter = 25;
   var currentQuestion = 0;
   var score = 0;
@@ -84,7 +110,10 @@ $(document).ready(function() {
     clearInterval(timer);
 
     lost++;
-    nextQuestion();
+
+    preLoadImage("lost");
+    setTimeout(nextQuestion, 3 * 1000);
+    // nextQuestion();
   }
 
   function countDown() {
@@ -108,6 +137,7 @@ $(document).ready(function() {
     $("#game").html(`
     <h4>${questions}</h4>
     ${loadChoices(choices)}
+    ${loadRemainingQuestions()}
     `);
   }
 
@@ -126,12 +156,14 @@ $(document).ready(function() {
 
     if (correctAnswer === selectedAnswer) {
       score++;
-      nextQuestion();
+      preLoadImage("win");
+      setTimeout(nextQuestion, 3 * 1000);
       console.log("won");
     } else {
       lost++;
+      preLoadImage("lost");
       console.log("lost");
-      nextQuestion();
+      setTimeout(nextQuestion, 3 * 1000);
     }
   });
 
@@ -152,5 +184,51 @@ $(document).ready(function() {
     $("#game").html(result);
   }
 
-  loadQuestion();
+  $(document).on("click", "#playAgain", function() {
+    counter = 25;
+    currentQuestion = 0;
+    score = 0;
+    lost = 0;
+    timer = null;
+
+    loadQuestion();
+  });
+
+  function loadRemainingQuestions() {
+    var remainingQuestion = triviaQuestions.length - (currentQuestion + 1);
+    var totalQuestions = triviaQuestions.length;
+
+    return `Remaining Question: ${remainingQuestion}/${totalQuestions}`;
+  }
+
+  function randomImage(images) {
+    const random = Math.floor(Math.random() * images.length);
+    const randomImage = images[random];
+    return randomImage;
+  }
+
+  function preLoadImage(status) {
+    var correctAnswer = triviaQuestions[currentQuestion].answer;
+    if (status === "win") {
+      $("#game").html(`
+        <p class="preload-image "><h2>Congratulations, you know your microbiology!</h2></p>
+        <p class="preload-image"><h4>The correct answer is <b>${correctAnswer}</b></h4></p>
+        <img src="${randomImage(rightImages)}" />
+        `);
+    } else {
+      $("#game").html(`
+        <p class="preload-image"><h2>You dont know your microbiology!</h2></p>
+        <p class="preload-image"><h4>The correct answer was <b>${correctAnswer}</b></h4></p>
+        <img src="${randomImage(wrongImages)}" />
+        `);
+    }
+  }
+
+  $(".card").hide();
+  $("#startGame").click(function() {
+    $("#startGame").remove();
+    $(".card").show();
+    $("#timer").html(counter);
+    loadQuestion();
+  });
 });
