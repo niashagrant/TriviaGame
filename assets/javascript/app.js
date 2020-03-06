@@ -113,7 +113,6 @@ $(document).ready(function() {
 
     preLoadImage("lost");
     setTimeout(nextQuestion, 3 * 1000);
-    // nextQuestion();
   }
 
   function countDown() {
